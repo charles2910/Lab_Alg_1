@@ -3,14 +3,13 @@
 #include <math.h>
 
 
-int checa_pg (int vetor[], int tam) //se nao eh PG, retorna -1
-{
+int checa_pg (int vetor[], int tam) //se nao eh PG, retorna -1.
+{                                   //se for, retorna a razao
     int razao = 0,razaoProx = 0;
     if (tam >= 3)
     {
         razao = vetor[1] / vetor[0];
         razaoProx = checa_pg(vetor + 1, tam - 1);
-
         if (razao != razaoProx)
             return -1;
         else
@@ -23,25 +22,7 @@ int checa_pg (int vetor[], int tam) //se nao eh PG, retorna -1
     }
 }
 
-/*
-// Esta função recebe um inteiro x e um vetor
-// crescente v[e..d] e devolve um índice m
-// em e..d tal que v[m] == x. Se tal m
-// não existe, devolve -1.
 
-static int
-bb (int x, int e, int d, int v[]) {
-   if (e > d) return -1;
-   else {
-      int m = (e + d)/2;
-      if (v[m] == x) return m;
-      if (v[m] < x)
-         return bb (x, m+1, d, v);
-      else
-         return bb (x, e, m-1, v);
-   }
-}
-*/
 int gera_elem (int pos, int razao, int a0) //gera quaisquer elementos
 {                                          //de uma PG
     int elem = (int)(a0 * pow ((double) razao, (double) (pos - 1)));
@@ -76,13 +57,13 @@ int conf_pg (int vetor[], int tam)
     razao3 = vetor[tam - 1] / vetor[tam - 2];
     if (razao1 == razao2)  //checa a razao da PG
         razao = razao1;
-    else if (razao2 == razao3)
+    else if (razao2 == razao3)  //checa a razao da PG
             razao = razao2;
-    else if (razao3 == razao1)
+    else if (razao3 == razao1)  //checa a razao da PG
             razao = razao3;
     //printf("\nRazao: %d\n",razao );  //printa a razao da PG (opcional)
-    aux = aux_conf(vetor, 0, tam - 1, razao);
-    //printf("\n Posição: %d\n",aux );  //printa a pos com elem errado
+    aux = aux_conf(vetor, 0, tam - 1, razao);  //inicia a recursao
+    //printf("\n Posição: %d\n",aux );  //printa a pos com elem errado (opcional)
     return gera_elem(aux + 1, razao, vetor[0]); //retorna o elemento correto para a posição cujo elemento esta errado
 }
 

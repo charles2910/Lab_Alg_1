@@ -26,7 +26,7 @@ float checa_pg (float vetor[], int tam) //se nao eh PG, retorna -1
 
 float gera_elem (int pos, float razao, float a0) //gera quaisquer elementos
 {                                          //de uma PG
-    float elem = (int)(a0 * pow ((double) razao, (double) (pos - 1)));
+    float elem = (float) (a0 * pow ((double) razao, (double) (pos - 1)));
     return elem;                           //retorna o valor do elem.
 }
 
